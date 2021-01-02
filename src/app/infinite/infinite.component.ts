@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfiniteComponent implements OnInit {
 
+  searchTerm: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  search(e: any): void {
+  e.preventDefault();
+  this.searchTerm = '';
+  console.log("Hello World!", this.searchTerm);
+}
 
 }

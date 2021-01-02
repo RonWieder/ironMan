@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { InfiniteComponent } from './infinite/infinite.component';
 import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
