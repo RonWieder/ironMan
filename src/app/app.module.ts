@@ -4,17 +4,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import { PaginationTableComponent } from './pagination-table/pagination-table.component';
 import { InfiniteComponent } from './infinite/infinite.component';
 import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 import { FormsModule } from '@angular/forms';
+import { DyamicTablePaginationComponent } from './dyamic-table-pagination/dyamic-table-pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaginationComponent,
+    PaginationTableComponent,
     InfiniteComponent,
-    DynamicTableComponent
+    DynamicTableComponent,
+    DyamicTablePaginationComponent
   ],
   imports: [
     BrowserModule,

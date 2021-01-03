@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs/operators';
 import { Post } from '../model/post';
 
 @Injectable({
@@ -13,11 +14,11 @@ export class DummyDataService {
 
   constructor(private http: HttpClient) { }
 
-  getPostsForPage(limitNum: number = 20, pageNum: number = 1): Observable<Post[]> {
+  private getDataFor(limitNum: number = 20, pageNum: number = 0): Observable<{}> {
     const limit: string = limitNum.toString();
     const page: string = pageNum.toString();
 
-    return this.http.get<Post[]>(this.BASE_URL, {
+    return this.http.get<{}>(this.BASE_URL, {
       headers: {
         'app-id': this.APP_ID
       },
@@ -26,5 +27,19 @@ export class DummyDataService {
         page
       }
     })
+  };
+
+  getPostsForPage(limitNum: number = 20, pageNum: number = 0): Observable<Post[]> {
+    return this.getDataFor(limitNum, pageNum).pipe(
+      map(res => res['data'])
+    )
   }
+
+  getNumOfPages(limitNum: number = 20, pageNum: number = 0): Observable<number> {
+    return this.getDataFor(limitNum, pageNum).pipe(
+      map(res => res['total']),
+      tap(total => Math.ceil(total / limitNum))
+    )
+  }
+
 }

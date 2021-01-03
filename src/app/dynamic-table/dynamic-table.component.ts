@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Post } from '../model/post';
 
 @Component({
   selector: 'iron-dynamic-table',
@@ -7,11 +8,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DynamicTableComponent implements OnInit {
 
-  @Input() tHeaders: string[] = [];
+  @Input() data: Post[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    // console.log(this.data)
   }
+
+  ngOnChanges(changesObj) {
+    console.log(changesObj);
+}
 
 }

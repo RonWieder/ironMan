@@ -1,17 +1,17 @@
 <div class="table-responsive">
-  <table class="table table-striped table-sm">
+  <!-- <table class="table table-striped table-sm">
     <thead>
       <tr>
-        <th *ngFor="let h of tHeaders">{{h}}</th>
+        <th *ngFor="let h of (data$[0] | async)">{{h}}</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td *ngFor="let d of tHeaders">{{d}}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let d of tHeaders">{{d}}</td>
+      <tr *ngFor="let row of (data$ | async)">
+        <td *ngFor="let cell of row">{{cell}}</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
+  <pre>
+    {{ data }}
+  </pre>
 </div>

@@ -1,0 +1,9 @@
+<iron-dynamic-table [data]="(data$ | async)"></iron-dynamic-table>
+<iron-dyamic-table-pagination
+[previous]="previous"
+[next]="next"
+[currentPage]="currentPage"
+[numOfPages]="numOfPages"
+(goToPage)="goTo($event)"
+>
+</iron-dyamic-table-pagination>
