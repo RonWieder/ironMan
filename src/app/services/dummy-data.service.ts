@@ -3,22 +3,26 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { Post } from '../model/post';
+import { Posts } from '../model/posts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DummyDataService {
 
-  private readonly APP_ID: string = '5fefb0da3d3ae40863c2ed0f';
-  private readonly BASE_URL: string = 'https://dummyapi.io/data/api/post';
+  private readonly APP_ID: string = '5ff22478ba78081ef42a5b4f';
+  private readonly BASE_URL: string = 'https://dummyapi.io/data/api/';
+
 
   constructor(private http: HttpClient) { }
 
-  private getDataFor(limitNum: number = 20, pageNum: number = 0): Observable<{}> {
+  fetch(limitNum: number = 20, pageNum: number = 0, tag: string = ""): Observable<Posts> {
     const limit: string = limitNum.toString();
     const page: string = pageNum.toString();
 
-    return this.http.get<{}>(this.BASE_URL, {
+    const url = this.BASE_URL + (tag.length ? `tag/${tag}/post` : 'post');
+
+    return this.http.get<Posts>(url, {
       headers: {
         'app-id': this.APP_ID
       },
@@ -26,20 +30,9 @@ export class DummyDataService {
         limit,
         page
       }
-    })
+    }).pipe(map((data) =>
+      ({ ...data, total: Math.ceil(data.total / limitNum) })
+    ))
   };
-
-  getPostsForPage(limitNum: number = 20, pageNum: number = 0): Observable<Post[]> {
-    return this.getDataFor(limitNum, pageNum).pipe(
-      map(res => res['data'])
-    )
-  }
-
-  getNumOfPages(limitNum: number = 20, pageNum: number = 0): Observable<number> {
-    return this.getDataFor(limitNum, pageNum).pipe(
-      map(res => res['total']),
-      tap(total => Math.ceil(total / limitNum))
-    )
-  }
 
 }

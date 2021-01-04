@@ -1,0 +1,26 @@
+<ng-container *ngIf="(data$ | async) as posts">
+  <div class="container mb-5"
+       *ngIf="showSearchBox">
+    <div class="d-flex row w-100">
+      <input class="form-control mr-1 col-6"
+             type="search"
+             placeholder="Search"
+             #input>
+      <button class="btn btn-outline-primary"
+              (click)="filterTable(input.value)">Search</button>
+    </div>
+  </div>
+  <iron-dynamic-table [data]="posts.data"
+                      [ironInfiniteScroll]="paginationType == 'infinite'"
+                      (bottomReached)="loadMore()"
+                      [fields]="fields"
+                      [loading]="loading$ | async"
+                      [loaderPosition]="paginationType == 'infinite' ? 'bottom' : 'center'">
+  </iron-dynamic-table>
+  <iron-dyamic-table-pagination *ngIf="paginationType == 'pagination'"
+                                [currentPage]="currentPage$ | async"
+                                [pages]="posts.total"
+                                (goToPage)="goTo($event)">
+  </iron-dyamic-table-pagination>
+
+</ng-container>

@@ -9,6 +9,9 @@ import { InfiniteComponent } from './infinite/infinite.component';
 import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 import { FormsModule } from '@angular/forms';
 import { DyamicTablePaginationComponent } from './dyamic-table-pagination/dyamic-table-pagination.component';
+import { LoaderComponent } from './loader/loader.component';
+import { TableWrapperComponent } from './table-wrapper/table-wrapper.component';
+import { InfiniteScrollDirective } from './infinite-scroll/infinite-scroll.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { DyamicTablePaginationComponent } from './dyamic-table-pagination/dyamic
     PaginationTableComponent,
     InfiniteComponent,
     DynamicTableComponent,
-    DyamicTablePaginationComponent
+    DyamicTablePaginationComponent,
+    TableWrapperComponent,
+    LoaderComponent,
+    InfiniteScrollDirective
   ],
   imports: [
     BrowserModule,

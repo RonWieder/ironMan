@@ -1,11 +1,3 @@
-<div class="container mb-5">
-  <div class="d-flex row w-100">
-    <input class="form-control mr-1 col-6"
-           type="search"
-           placeholder="Search"
-           [(ngModel)]="searchTerm">
-    <button class="btn btn-outline-primary"
-            (click)="search($event)">Search</button>
-  </div>
-</div>
-<!-- <iron-dynamic-table [tHeaders]="['one', 'two', 'three']"></iron-dynamic-table> -->
+<iron-table-wrapper [fields]="fields"
+                    paginationType="infinite">
+</iron-table-wrapper>

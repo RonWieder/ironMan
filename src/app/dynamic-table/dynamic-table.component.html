@@ -1,17 +1,19 @@
 <div class="table-responsive">
-  <!-- <table class="table table-striped table-sm">
+  <table class="table table-striped table-sm">
     <thead>
       <tr>
-        <th *ngFor="let h of (data$[0] | async)">{{h}}</th>
+        <th *ngFor="let header of fields">{{ header }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of (data$ | async)">
-        <td *ngFor="let cell of row">{{cell}}</td>
+      <tr *ngFor="let row of data">
+        <td *ngFor="let header of fields">{{ row[header] }}</td>
       </tr>
     </tbody>
-  </table> -->
-  <pre>
-    {{ data }}
-  </pre>
+  </table>
+  <div class="loader"
+       [class.is-loading]="loading"
+       [ngClass]="'loader-' + loaderPosition">
+    <iron-loader></iron-loader>
+  </div>
 </div>

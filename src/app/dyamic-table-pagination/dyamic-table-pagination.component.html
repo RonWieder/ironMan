@@ -1,24 +1,24 @@
-<nav aria-label="Page navigation example">
+<nav class="row justify-content-center"
+     *ngIf="pages > 0">
   <ul class="pagination">
-    <li class="page-item" [ngClass]="{'disabled': !previous}">
+    <li class="page-item"
+        [ngClass]="{'disabled': currentPage <= 1}">
       <button class="page-link"
-         aria-label="Previous"
-         (click)="goTo('next')"
-      >
+              aria-label="Previous"
+              (click)="goTo(currentPage - 1)">
         <span aria-hidden="true">&laquo;</span>
       </button>
     </li>
-    <li class="page-item" *ngIf="currentPage>0"><button class="page-link"
-         >{{  currentPage - 1  }}</button></li>
-    <li class="page-item"><button class="page-link"
-         >{{  currentPage  }}</button></li>
-    <li class="page-item" *ngIf="currentPage<numOfPages-1"><button class="page-link"
-         >{{  currentPage  + 1}}</button></li>
-    <li class="page-item" [ngClass]="{'disabled': !next}">
+    <li class="page-item"
+        *ngFor="let page of _pages">
       <button class="page-link"
-         aria-label="Next"
-         (click)="goTo('previous')"
-         >
+              (click)="goTo(page + 1)">{{ page + 1 }}</button>
+    </li>
+    <li class="page-item"
+        [ngClass]="{'disabled': currentPage >= pages}">
+      <button class="page-link"
+              aria-label="Next"
+              (click)="goTo(currentPage + 1)">
         <span aria-hidden="true">&raquo;</span>
       </button>
     </li>

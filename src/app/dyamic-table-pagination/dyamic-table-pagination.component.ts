@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'iron-dyamic-table-pagination',
@@ -8,11 +7,30 @@ import { EventEmitter } from 'events';
 })
 export class DyamicTablePaginationComponent implements OnInit {
 
-  @Input() numOfPages: number;
-  @Input() currentPage: number;
-  @Input() next: boolean = true;
-  @Input() previous: boolean = true;
-  @Output() goToPage: EventEmitter = new EventEmitter();
+  _pages: number[] = [];
+  _page: number = 1;
+  _pagesNumber: number = 0;
+  private originalPagesArr = [];
+
+  @Input() set pages(pages: number) {
+    this.originalPagesArr = (new Array(pages)).fill(1).map((v, i) => i);
+    this._pagesNumber = pages;
+    this.calculatePages();
+  }
+
+  get pages(): number {
+    return this._pagesNumber;
+  }
+
+  @Input() set currentPage(page: number) {
+    this._page = Math.max(page, 1);
+    this.calculatePages();
+  }
+
+  get currentPage(): number {
+    return this._page;
+  }
+  @Output() goToPage: EventEmitter<number> = new EventEmitter();
 
 
   constructor() { }
@@ -20,8 +38,14 @@ export class DyamicTablePaginationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goTo(order) {
-    this.goToPage.emit(order);
-}
+  private calculatePages() {
+    let minPage = Math.max(this._page - 2, 0);
+    let maxPage = Math.min(this._page + 2, this.originalPagesArr.length);
+    this._pages = this.originalPagesArr.slice(minPage, maxPage);
+  }
+
+  goTo(page) {
+    this.goToPage.emit(page);
+  }
 
 }
