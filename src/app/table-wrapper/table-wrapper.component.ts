@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { scan, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, concat, Observable } from 'rxjs';
+import { map, scan, switchMap, tap } from 'rxjs/operators';
 import { Posts } from '../model/posts';
 import { DummyDataService } from '../services/dummy-data.service';
 import { PaginationType } from './pagination-type.enum';
@@ -13,7 +13,8 @@ import { PaginationType } from './pagination-type.enum';
 export class TableWrapperComponent implements OnInit {
   private loading: BehaviorSubject<boolean> = new BehaviorSubject(true);
   private currentPage: BehaviorSubject<number> = new BehaviorSubject(0);
-  private searchTerm: BehaviorSubject<string> = new BehaviorSubject("");
+  searchTerm: string = '';
+  private readonly recordsOnPage: number = 20;
 
   loading$ = this.loading.asObservable();
   currentPage$ = this.currentPage.asObservable();
@@ -27,9 +28,9 @@ export class TableWrapperComponent implements OnInit {
   constructor(private dummyDataService: DummyDataService) { }
 
   ngOnInit(): void {
-    this.data$ = combineLatest([this.currentPage, this.searchTerm]).pipe(
+    this.data$ = this.currentPage$.pipe(
       tap(() => this.setLoading(true)),
-      switchMap(([currentPage, searchTerm]) => this.dummyDataService.fetch(20, currentPage, searchTerm)),
+      switchMap(currentPage => this.dummyDataService.fetch(this.recordsOnPage, currentPage, this.searchTerm)),
       scan((acc, posts) => {
         const data = this.paginationType === PaginationType.Infinite ? [...acc.data, ...posts.data] : posts.data;
         return {
@@ -49,8 +50,8 @@ export class TableWrapperComponent implements OnInit {
     this.currentPage.next(page);
   }
 
-  filterTable(searchTerm: string) {
-    this.searchTerm.next(searchTerm);
+  filterTable() {
+    this.currentPage.next(0);
   }
 
   loadMore() {

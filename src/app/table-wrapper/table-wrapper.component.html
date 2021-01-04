@@ -5,9 +5,9 @@
       <input class="form-control mr-1 col-6"
              type="search"
              placeholder="Search for tag"
-             #input>
+             [(ngModel)]="searchTerm">
       <button class="btn btn-outline-primary"
-              (click)="filterTable(input.value)">Search</button>
+              (click)="filterTable()">Search</button>
     </div>
   </div>
   <iron-dynamic-table [data]="posts.data"
