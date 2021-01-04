@@ -10,6 +10,7 @@
       </button>
     </li>
     <li class="page-item"
+        [ngClass]="{'active': page === currentPage}"
         *ngFor="let page of _pages">
       <button class="page-link"
               (click)="goTo(page + 1)">{{ page + 1 }}</button>

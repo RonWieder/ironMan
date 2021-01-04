@@ -19,7 +19,6 @@ export class InfiniteScrollDirective implements AfterContentInit, OnDestroy {
 
     if (this.enable) {
       this.subscription = fromEvent(this.host.getScrollContainer(), 'scroll').pipe(debounceTime(100)).subscribe((event: MouseEvent) => {
-        debugger;
         const element = event.target as HTMLElement;
         const reachBottom = element.scrollTop >= (element.scrollHeight - element.offsetHeight - (element.offsetHeight * 0.1));
         if (reachBottom) {

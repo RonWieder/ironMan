@@ -1,19 +1,19 @@
 <div class="container-fluid h-100 d-flex">
   <div class="d-flex row flex-grow-1"
        style="min-width: 0;">
-    <nav class="d-flex col-2 p-0 d-md-block bg-dark sidebar collapse">
-      <div class="position-sticky pt-3">
+    <nav class="d-flex col-2 bg-dark">
+      <div class="pt-3">
         <ul class="nav flex-column">
-          <li class="nav-item text-primary pb-3 font-weight-bold ml-4">
+          <li class="text-primary pb-3 font-weight-bold ml-3">
             Ron Wieder
           </li>
-          <li class="nav-item">
+          <li>
             <a class="nav-link text-info"
                routerLink='pagination'>
               Pagination Table
             </a>
           </li>
-          <li class="nav-item">
+          <li>
             <a class="nav-link text-info"
                routerLink='infinite'>
               Infinite Scroll Table
@@ -23,7 +23,7 @@
       </div>
     </nav>
 
-    <main class="d-flex col px-4 mt-3 overflow-hidden">
+    <main class="d-flex col px-4 mt-3">
       <div class="page-container">
         <router-outlet></router-outlet>
       </div>
