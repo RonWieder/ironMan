@@ -4,23 +4,21 @@
     <li class="page-item"
         [ngClass]="{'disabled': currentPage <= 1}">
       <button class="page-link"
-              aria-label="Previous"
-              (click)="goTo(currentPage - 1)">
-        <span aria-hidden="true">&laquo;</span>
+              (click)="goTo(currentPage - 2)">
+        <span>&laquo;</span>
       </button>
     </li>
     <li class="page-item"
-        [ngClass]="{'active': page === currentPage}"
+        [ngClass]="{'active': page === currentPage - 1}"
         *ngFor="let page of _pages">
       <button class="page-link"
-              (click)="goTo(page + 1)">{{ page + 1 }}</button>
+              (click)="goTo(page)">{{ page + 1 }}</button>
     </li>
     <li class="page-item"
         [ngClass]="{'disabled': currentPage >= pages}">
       <button class="page-link"
-              aria-label="Next"
-              (click)="goTo(currentPage + 1)">
-        <span aria-hidden="true">&raquo;</span>
+              (click)="goTo(currentPage)">
+        <span>&raquo;</span>
       </button>
     </li>
   </ul>
