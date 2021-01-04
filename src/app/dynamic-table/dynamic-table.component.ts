@@ -19,10 +19,6 @@ export class DynamicTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnChanges(changesObj) {
-    console.log(changesObj);
-  }
-
   getScrollContainer(): HTMLElement {
     return this.element.nativeElement.querySelector(".table-responsive");
   }

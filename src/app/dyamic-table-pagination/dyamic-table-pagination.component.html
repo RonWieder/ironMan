@@ -10,7 +10,7 @@
     </li>
     <li class="page-item"
         [ngClass]="{'active': page === currentPage - 1}"
-        *ngFor="let page of _pages">
+        *ngFor="let page of _pagesToDisplay">
       <button class="page-link"
               (click)="goTo(page)">{{ page + 1 }}</button>
     </li>

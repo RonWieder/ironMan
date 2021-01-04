@@ -1,9 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject, combineLatest, from, merge, Observable, Subject } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
-import { Post } from '../model/post';
-import { Posts } from '../model/posts';
-import { DummyDataService } from '../services/dummy-data.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'iron-pagination-table',

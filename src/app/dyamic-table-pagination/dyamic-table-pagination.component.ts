@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { truncateSync } from 'fs';
 
 @Component({
   selector: 'iron-dyamic-table-pagination',
@@ -8,7 +7,7 @@ import { truncateSync } from 'fs';
 })
 export class DyamicTablePaginationComponent implements OnInit {
 
-  _pages: number[] = [];
+  _pagesToDisplay: number[] = [];
   _page: number = 1;
   _numOfPages: number = 0;
   private originalPagesArr = [];
@@ -42,9 +41,9 @@ export class DyamicTablePaginationComponent implements OnInit {
   private calculatePages() {
     const startCondition: boolean = this._page === 1 || this._page === 2 ? true : false;
     const endCondition: boolean = this._page === this._numOfPages || this._page + 1 === this._numOfPages ? true : false;
-    let minPage = startCondition ? 0 : endCondition ? this._numOfPages - 3 : Math.max(this._page - 2, 0);
-    let maxPage = endCondition ? this._numOfPages : startCondition ? 3 : Math.min(this._page + 1, this.originalPagesArr.length);
-    this._pages = this.originalPagesArr.slice(minPage, maxPage);
+    let minPage: number = startCondition ? 0 : endCondition ? this._numOfPages - 3 : Math.max(this._page - 2, 0);
+    let maxPage: number = endCondition ? this._numOfPages : startCondition ? 3 : Math.min(this._page + 1, this.originalPagesArr.length);
+    this._pagesToDisplay = this.originalPagesArr.slice(minPage, maxPage);
   }
 
   goTo(page) {

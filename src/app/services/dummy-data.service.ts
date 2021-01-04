@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators';
-import { Post } from '../model/post';
+import { map } from 'rxjs/operators';
 import { Posts } from '../model/posts';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { Posts } from '../model/posts';
 })
 export class DummyDataService {
 
-  private readonly APP_ID: string = '5ff22478ba78081ef42a5b4f';
+  private readonly APP_ID: string = '5fefb0da3d3ae40863c2ed0f';
   private readonly BASE_URL: string = 'https://dummyapi.io/data/api/';
 
 

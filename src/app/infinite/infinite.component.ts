@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfiniteComponent implements OnInit {
 
-  fields: string[] = ['text', 'likes', 'tags'];
+  fields: string[] = ['text', 'likes', 'tags', 'publishDate'];
 
   constructor() { }
 
