@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
 
-# Following Instructions assumes you have Node.js installed on your machine
+# Following Instructions assumes you have Node.js and Docker installed on your machine
 
 ## View app on Development server
 
