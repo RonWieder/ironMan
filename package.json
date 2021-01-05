@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "optiBuild": "ng build --prod --aot=true --buildOptimizer=true",
+    "optibuild": "ng build --prod --aot=true --buildOptimizer=true",
+    "dockerize": "docker build . -t iron-source-man && docker run --rm -d  -p 80:80/tcp iron-source-man",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",

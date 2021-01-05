@@ -10,5 +10,10 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Optimized Build of the app
 
-Run `npm run optiBuild` in order to build a minified, AOT optimized production version of the app.
+Run `npm run optibuild` in order to build a minified, AOT optimized production version of the app.
 The script is making a use of hte `ng build` command, postfixed with relevant flags.
+
+## View a dockerized Optimized Build of the app
+
+Run `npm run dockerize`. This command will execute a build and run of Dockerfile image build with the content from the dist folder of the app.
+To see the app running on docker, wait for the script to finish and go to [http://localhost:80](http://localhost:80)
